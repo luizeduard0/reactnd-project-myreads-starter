@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
+import humanize from 'string-humanize'
 
 class BookShelf extends Component {
 
@@ -16,7 +17,7 @@ class BookShelf extends Component {
 
     return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{shelf}</h2>
+        <h2 className="bookshelf-title">{humanize(shelf)}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.filter(book => book.shelf === shelf)

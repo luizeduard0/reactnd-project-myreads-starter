@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import humanize from 'string-humanize'
+
 
 class Book extends Component {
 
@@ -18,7 +20,7 @@ class Book extends Component {
             <select>
               <option value="none" disabled>Move to...</option>
               {shelfs.map(shelf => (
-                <option key={shelf} value="{shelf}">{shelf}</option>
+                <option key={shelf} value="{shelf}">{humanize(shelf)}</option>
               ))}
               <option value="">None</option>
             </select>
