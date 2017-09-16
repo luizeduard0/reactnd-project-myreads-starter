@@ -20,7 +20,7 @@ class Book extends Component {
               {shelfs.map(shelf => (
                 <option key={shelf} value="{shelf}">{shelf}</option>
               ))}
-              <option value="none">None</option>
+              <option value="">None</option>
             </select>
           </div>
         </div>
