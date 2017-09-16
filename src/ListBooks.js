@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
 class ListBooks extends Component {
+
+  static propTypes = {
+    books: PropTypes.array
+  }
+
   render() {
+
+    const { loading, books } = this.props
+
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -11,7 +20,18 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf />
+
+            {loading && ( <p>Loading...</p> )}
+
+            {!loading && (
+              <div>
+                {books.length &&
+                  ( <BookShelf /> ) ||
+                  ( <p>No shelfs to display.</p> )}
+              </div>
+            )}
+
+
           </div>
         </div>
         <div className="open-search">
