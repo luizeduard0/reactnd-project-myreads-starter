@@ -6,12 +6,13 @@ import BookShelf from './BookShelf'
 class ListBooks extends Component {
 
   static propTypes = {
+    shelfs: PropTypes.array,
     books: PropTypes.array
   }
 
   render() {
 
-    const { loading, books } = this.props
+    const { shelfs, books, loading } = this.props
 
     return (
       <div className="list-books">
@@ -23,10 +24,16 @@ class ListBooks extends Component {
 
             {loading && ( <p>Loading...</p> )}
 
+
+
             {!loading && (
               <div>
                 {books.length &&
-                  ( <BookShelf /> ) ||
+                  (
+                    shelfs.map((shelf, index) => (
+                      <BookShelf key={index} shelf={shelf} books={books} />
+                    ))
+                  ) ||
                   ( <p>No shelfs to display.</p> )}
               </div>
             )}

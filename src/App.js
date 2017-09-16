@@ -9,6 +9,7 @@ class BooksApp extends React.Component {
 
   state = {
     books: [],
+    shelfs: [],
     loading: true
   }
 
@@ -16,7 +17,11 @@ class BooksApp extends React.Component {
     BooksAPI
       .getAll()
       .then(books => {
+
+        const shelfs = [...new Set(books.map(b => b.shelf))]
+
         this.setState({
+          shelfs,
           books,
           loading: false
         })
@@ -27,12 +32,12 @@ class BooksApp extends React.Component {
 
   render() {
 
-    const { books, loading } = this.state
+    const { shelfs, books, loading } = this.state
 
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks books={books} loading={loading} />
+          <ListBooks shelfs={shelfs} books={books} loading={loading} />
         )} />
         <Route exact path="/search" component={SearchBooks} />
       </div>
