@@ -31,7 +31,7 @@ class ListBooks extends Component {
                 {books.length &&
                   (
                     shelfs.map((shelf, index) => (
-                      <BookShelf key={index} shelf={shelf} books={books} />
+                      <BookShelf key={index} shelf={shelf} shelfs={shelfs} books={books} />
                     ))
                   ) ||
                   ( <p>No shelfs to display.</p> )}

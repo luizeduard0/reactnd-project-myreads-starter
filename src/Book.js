@@ -8,7 +8,7 @@ class Book extends Component {
   }
 
   render() {
-    const { book } = this.props
+    const { book, shelfs } = this.props
 
     return (
       <div className="book">
@@ -17,9 +17,9 @@ class Book extends Component {
           <div className="book-shelf-changer">
             <select>
               <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
+              {shelfs.map(shelf => (
+                <option key={shelf} value="{shelf}">{shelf}</option>
+              ))}
               <option value="none">None</option>
             </select>
           </div>
