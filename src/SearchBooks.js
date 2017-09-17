@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import AlertContainer from 'react-alert'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
@@ -17,20 +18,34 @@ class SearchBooks extends Component {
     results: []
   }
 
+  alertOptions = {
+    offset: 14,
+    position: 'top right',
+    theme: 'dark',
+    time: 3000,
+    transition: 'scale'
+  }
+
   search(query) {
     if(!query) {
       this.setState({ results: [] })
       return
     }
 
+    if(query.length < 3) return
+
+    if(this.state.searching) return
+
     this.setState({ searching: true })
 
     BooksAPI.search(query, 20)
       .then(results => {
-
-
         if(results.error) {
           results = []
+          this.msg.show('You need to type something valid to search books', {
+            type: 'error'
+          })
+          this.setState({'searching': false})
         } else {
           results = results.map(book => {
             const bookInAShelf = this.props.books.filter(b => b.id === book.id)
@@ -38,7 +53,6 @@ class SearchBooks extends Component {
             return book
           })
         }
-
         this.setState({ searching: false, results })
       })
 
@@ -51,8 +65,8 @@ class SearchBooks extends Component {
 
     return (
 
-
       <div className="search-books">
+        <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
         <div className="search-books-bar">
           <Link to="/" className='close-search'>Close</Link>
           <div className="search-books-input-wrapper">
