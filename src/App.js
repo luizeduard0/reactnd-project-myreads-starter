@@ -4,6 +4,7 @@ import AlertContainer from 'react-alert'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import ListBooks from './ListBooks'
+import humanize from 'string-humanize'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -56,7 +57,7 @@ class BooksApp extends React.Component {
                   currentState.books.push(book)
         })
 
-        this.msg.show(bookAlreadyExists ? `Book moved to ${newShelf}` : `Book added to ${newShelf}`, {
+        this.msg.show(bookAlreadyExists ? `Book moved to ${humanize(newShelf)}` : `Book added to ${humanize(newShelf)}`, {
           type: 'success'
         })
 
