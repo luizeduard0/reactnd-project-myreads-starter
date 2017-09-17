@@ -7,6 +7,7 @@ import Book from './Book'
 import SearchTermsSuggestion from './SearchTermsSuggestion'
 import Loading from './Loading'
 
+
 class SearchBooks extends Component {
 
   static propTypes = {
@@ -14,6 +15,7 @@ class SearchBooks extends Component {
     books: PropTypes.array,
     onUpdateBookShelf: PropTypes.func.isRequired
   }
+
 
   state = {
     query: '',
@@ -31,7 +33,7 @@ class SearchBooks extends Component {
 
   search(query) {
     this.setState({ query })
-    
+
     if(!query) {
       this.setState({ results: [] })
       return
@@ -40,8 +42,6 @@ class SearchBooks extends Component {
     if(query.length < 3) return
 
     if(this.state.searching) return
-
-    console.log('QUERY', query)
 
     this.setState({ searching: true })
 
