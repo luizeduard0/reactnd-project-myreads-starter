@@ -18,12 +18,13 @@ class Book extends Component {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}></div>
           <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>Move to...</option>
-              {shelfs.map(shelf => (
-                <option key={shelf} value="{shelf}">{humanize(shelf)}</option>
-              ))}
+            <select name="shelf" value={book.shelf}>
               <option value="">None</option>
+              {shelfs
+                .filter(shelf => shelf !== book.shelf)
+                .map(shelf => (
+                <option key={shelf} value={shelf}>{humanize(shelf)}</option>
+              ))}
             </select>
           </div>
         </div>
