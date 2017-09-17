@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import AlertContainer from 'react-alert'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
+import SearchTermsSuggestion from './SearchTermsSuggestion'
 
 class SearchBooks extends Component {
 
@@ -14,6 +15,7 @@ class SearchBooks extends Component {
   }
 
   state = {
+    query: '',
     searching: false,
     results: []
   }
@@ -36,13 +38,13 @@ class SearchBooks extends Component {
 
     if(this.state.searching) return
 
-    this.setState({ searching: true })
+    this.setState({ searching: true, query })
 
     BooksAPI.search(query, 20)
       .then(results => {
         if(results.error) {
           results = []
-          this.msg.show('You need to type something valid to search books', {
+          this.msg.show('No books found, try searching different terms', {
             type: 'error'
           })
           this.setState({'searching': false})
@@ -60,7 +62,7 @@ class SearchBooks extends Component {
 
   render () {
 
-    const { results, searching = false } = this.state
+    const { results, query, searching = false } = this.state
     const { shelfs, onUpdateBookShelf } = this.props
 
     return (
@@ -70,9 +72,18 @@ class SearchBooks extends Component {
         <div className="search-books-bar">
           <Link to="/" className='close-search'>Close</Link>
           <div className="search-books-input-wrapper">
-            <input onChange={event => this.search(event.target.value)} type="text" placeholder="Search by title or author"/>
+            <input
+              onChange={event => this.search(event.target.value)}
+              value={query}
+              type="text"
+              placeholder="Search by title or author"/>
           </div>
         </div>
+
+        {!results.length && (
+          <SearchTermsSuggestion onClick={(term) => this.search(term)} />
+        )}
+
         <div className="search-books-results">
           <ol className="books-grid">
             {searching && (

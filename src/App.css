@@ -172,3 +172,30 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+.search-terms-suggestions {
+  padding: 80px 30px 20px;
+}
+
+.search-terms-suggestions h2 {
+
+}
+
+.search-terms-suggestions h2 small {
+    display: block;
+    font-size: 15px;
+    font-weight: normal;
+    color: #666;
+}
+
+.search-terms-suggestions ol,
+.search-terms-suggestions li {
+  margin: 0;
+  padding: 0;
+}
+
+.search-terms-suggestions li {
+  display: inline-block;
+  list-style: none;
+  padding: 4px 10px;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import AlertContainer from 'react-alert'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import ListBooks from './ListBooks'
@@ -11,6 +12,14 @@ class BooksApp extends React.Component {
     books: [],
     shelfs: [],
     loading: true
+  }
+
+  alertOptions = {
+    offset: 14,
+    position: 'top right',
+    theme: 'dark',
+    time: 3000,
+    transition: 'scale'
   }
 
   getBooks() {
@@ -38,11 +47,19 @@ class BooksApp extends React.Component {
     book.shelf = newShelf
     BooksAPI.update(book, newShelf)
       .then(response => {
+
+        const bookAlreadyExists = this.bookAlreadyExists(book.id)
+
         this.setState(currentState => {
-          books: this.bookAlreadyExists(book.id) ?
-                      currentState.books.concat([book]) :
-                      currentState.books.push(book)
+          books:  bookAlreadyExists ?
+                  currentState.books.concat([book]) :
+                  currentState.books.push(book)
         })
+
+        this.msg.show(bookAlreadyExists ? `Book moved to ${newShelf}` : `Book added to ${newShelf}`, {
+          type: 'success'
+        })
+
       })
   }
 
@@ -56,6 +73,7 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
+        <AlertContainer ref={a => this.msg = a} {...this.alertOptions} />
         <Route exact path="/" render={() => (
           <ListBooks
             shelfs={shelfs}
