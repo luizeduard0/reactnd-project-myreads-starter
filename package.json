@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "prop-types": "^15.5.8",
+    "query-string": "^5.0.0",
     "react": "^15.5.4",
     "react-alert": "^2.3.0",
     "react-dom": "^15.5.4",

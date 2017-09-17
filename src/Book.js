@@ -93,10 +93,12 @@ class Book extends Component {
                <div className="book-categories">
                  {book.categories && (
                    book.categories.map(category => (
-                     <Link key={category} to={{
-                       pathname: '/search',
-                       search: `?query=${category}`
-                     }}>#{category}</Link>
+                     <Link
+                       key={category}
+                       to={{
+                         pathname: '/search',
+                         search: `?query=${category}`
+                       }}>{category}</Link>
                    ))
                  )}
                </div>

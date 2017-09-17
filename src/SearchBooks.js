@@ -6,6 +6,7 @@ import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import SearchTermsSuggestion from './SearchTermsSuggestion'
 import Loading from './Loading'
+import queryString from 'query-string'
 
 
 class SearchBooks extends Component {
@@ -15,7 +16,6 @@ class SearchBooks extends Component {
     books: PropTypes.array,
     onUpdateBookShelf: PropTypes.func.isRequired
   }
-
 
   state = {
     query: '',
@@ -29,6 +29,13 @@ class SearchBooks extends Component {
     theme: 'dark',
     time: 3000,
     transition: 'scale'
+  }
+
+  componentDidMount() {
+    const request = queryString.parse(location.search)
+    if(request.query) {
+      this.search(request.query)
+    }
   }
 
   search(query) {

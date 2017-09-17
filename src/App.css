@@ -273,6 +273,15 @@ body, .app {
   margin-right: 10px;
 }
 
+.book-categories a {
+  display: inline-block;
+  color: #409fed;
+  padding: 4px 15px;
+  background: #f0f0f0;
+  margin: 10px 0;
+  border-radius: 15px;
+  text-decoration: none;
+}
 
 .btn {
   background: #90f058;
