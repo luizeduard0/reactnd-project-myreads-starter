@@ -197,5 +197,37 @@ body, .app {
 .search-terms-suggestions li {
   display: inline-block;
   list-style: none;
-  padding: 4px 10px;
+  margin: 5px 3px;
+}
+
+.search-terms-suggestions li a {
+  text-decoration: none;
+  background: #f5f5f5;
+  color: #7f847e;
+  font-weight: normal;
+  padding: 4px 15px;
+  border-radius: 10px;
+  letter-spacing: -0.5px;
+}
+
+.search-terms-suggestions li a:hover {
+  color: #fff;
+  background: #2e7c31;
+}
+
+.loader {
+  display: block;
+  padding: 5px;
+  text-align: center;
+}
+
+.loader div{
+  width: 20px;
+  height: 20px;
+  background-image: url('./icons/loading.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  font-size: 0;
+  margin: 0 auto;
 }

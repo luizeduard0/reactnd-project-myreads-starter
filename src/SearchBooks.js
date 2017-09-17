@@ -5,6 +5,7 @@ import AlertContainer from 'react-alert'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import SearchTermsSuggestion from './SearchTermsSuggestion'
+import Loading from './Loading'
 
 class SearchBooks extends Component {
 
@@ -80,15 +81,10 @@ class SearchBooks extends Component {
           </div>
         </div>
 
-        {!results.length && (
-          <SearchTermsSuggestion onClick={(term) => this.search(term)} />
-        )}
-
         <div className="search-books-results">
           <ol className="books-grid">
-            {searching && (
-              <li>Searching</li>
-            ) || (
+            <Loading show={searching} />
+            {!searching && (
               results.map(book => (
                 <li key={book.id}>
                   <Book book={book} shelfs={shelfs} onUpdateBookShelf={onUpdateBookShelf} />
@@ -97,6 +93,10 @@ class SearchBooks extends Component {
             )}
           </ol>
         </div>
+
+        {!results.length && (
+          <SearchTermsSuggestion onClick={(term) => this.search(term)} />
+        )}
       </div>
     )
   }

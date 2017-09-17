@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
+import Loading from './Loading'
 
 class ListBooks extends Component {
 
@@ -23,9 +24,7 @@ class ListBooks extends Component {
         <div className="list-books-content">
           <div>
 
-            {loading && ( <p>Loading...</p> )}
-
-
+            <Loading show={loading} />
 
             {!loading && (
               <div>
