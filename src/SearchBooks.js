@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
 class SearchBooks extends Component {
+
+  static propTypes = {
+    shelfs: PropTypes.array
+  }
 
   state = {
     searching: false,
@@ -11,22 +16,26 @@ class SearchBooks extends Component {
   }
 
   search(query) {
-    if(!query) return
-
-    this.setState({ searching: true })
-
-    console.log('SEARCHING FOR', query)
-
+    if(!query) {
+      // TODO: make sure when the search is empty it display no results...
+      this.setState({ results: [] })
+      return
+    }
     BooksAPI.search(query, 20)
-      .then(results => this.setState({ searching: false, results }))
+      .then(results => {
+        this.setState({ searching: false, results })
+      })
 
   }
 
   render () {
 
-    const { results, searching } = this.state
+    const { results, searching = false } = this.state
+    const { shelfs } = this.props
 
     return (
+
+
       <div className="search-books">
         <div className="search-books-bar">
           <Link to="/" className='close-search'>Close</Link>
@@ -49,7 +58,9 @@ class SearchBooks extends Component {
               <li>Searching</li>
             ) || (
               results.map(book => (
-                <li key={book.id}><Book book={book} /></li>
+                <li key={book.id}>
+                  <Book book={book} shelfs={shelfs} />
+                </li>
               ))
             )}
           </ol>

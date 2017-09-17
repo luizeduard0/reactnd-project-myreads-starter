@@ -30,7 +30,7 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-    getBooks()
+    this.getBooks()
   }
 
   render() {
@@ -42,7 +42,9 @@ class BooksApp extends React.Component {
         <Route exact path="/" render={() => (
           <ListBooks shelfs={shelfs} books={books} loading={loading} />
         )} />
-        <Route exact path="/search" component={SearchBooks} />
+        <Route exact path="/search" render={() => (
+          <SearchBooks shelfs={shelfs} />
+        )}  />
       </div>
     )
   }

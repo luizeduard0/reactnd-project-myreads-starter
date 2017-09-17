@@ -6,7 +6,8 @@ import humanize from 'string-humanize'
 class Book extends Component {
 
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    shelfs: PropTypes.array.isRequired,
   }
 
   render() {
