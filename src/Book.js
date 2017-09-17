@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import humanize from 'string-humanize'
+import BookRating from './BookRating'
 
 
 class Book extends Component {
@@ -31,6 +32,7 @@ class Book extends Component {
             </select>
           </div>
         </div>
+        <BookRating book={book} />
         <div className="book-title">{book.title}</div>
         <div className="book-authors">
           {book.authors ? book.authors.join(', ') : 'unkown'}

@@ -126,9 +126,6 @@ body, .app {
 .book-authors {
   font-size: 0.8em;
 }
-.book-title {
-  margin-top: 10px;
-}
 .book-authors {
   color: #999;
 }
@@ -230,4 +227,33 @@ body, .app {
   background-size: 20px;
   font-size: 0;
   margin: 0 auto;
+}
+
+.book-rating {
+  font-size: 13px;
+  margin-top: 10px;
+  color: #ccc;
+  padding: 3px 0px;
+}
+.book-rating .book-rating-icon{
+  float: left;
+  width: 15px;
+  height: 15px;
+  background-image: url('./icons/favourite-star-gray.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15px;
+  font-size: 0;
+  margin: 0 auto;
+  margin-right: 5px;
+}
+
+.book-rating.rated .book-rating-icon{
+  background-image: url('./icons/favourite-star-yellow.svg');
+}
+
+.book-rating.rated {
+  color: #FFDA44;
+  font-size: 12px;
+  font-weight: bold;
 }
