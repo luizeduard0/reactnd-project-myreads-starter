@@ -36,7 +36,7 @@ class BooksApp extends React.Component {
 
   onUpdateBookShelf(book, newShelf) {
     book.shelf = newShelf
-    BooksAPI.update(book.id, newShelf)
+    BooksAPI.update(book, newShelf)
       .then(response => {
         this.setState(currentState => {
           books: this.bookAlreadyExists(book.id) ?
