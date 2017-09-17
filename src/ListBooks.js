@@ -7,12 +7,13 @@ class ListBooks extends Component {
 
   static propTypes = {
     shelfs: PropTypes.array,
-    books: PropTypes.array
+    books: PropTypes.array,
+    onUpdateBookShelf: PropTypes.func.isRequired
   }
 
   render() {
 
-    const { shelfs, books, loading } = this.props
+    const { shelfs, books, onUpdateBookShelf, loading } = this.props
 
     return (
       <div className="list-books">
@@ -31,7 +32,7 @@ class ListBooks extends Component {
                 {books.length &&
                   (
                     shelfs.map((shelf, index) => (
-                      <BookShelf key={index} shelf={shelf} shelfs={shelfs} books={books} />
+                      <BookShelf key={index} shelf={shelf} shelfs={shelfs} books={books} onUpdateBookShelf={onUpdateBookShelf} />
                     ))
                   ) ||
                   ( <p>No shelfs to display.</p> )}

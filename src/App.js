@@ -20,12 +20,29 @@ class BooksApp extends React.Component {
 
         const shelfs = [...new Set(books.map(b => b.shelf))]
 
+
         this.setState({
           shelfs,
           books,
           loading: false
         })
         console.log('BOOKS', books)
+      })
+  }
+
+  bookAlreadyExists(bookId) {
+    return this.state.books.filter(book => book.id === bookId).length
+  }
+
+  onUpdateBookShelf(book, newShelf) {
+    book.shelf = newShelf
+    BooksAPI.update(book.id, newShelf)
+      .then(response => {
+        this.setState(currentState => {
+          books: this.bookAlreadyExists(book.id) ?
+                      currentState.books.concat([book]) :
+                      currentState.books.push(book)
+        })
       })
   }
 
@@ -40,10 +57,16 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks shelfs={shelfs} books={books} loading={loading} />
+          <ListBooks
+            shelfs={shelfs}
+            books={books}
+            loading={loading}
+            onUpdateBookShelf={(book, newShelf) => this.onUpdateBookShelf(book, newShelf)} />
         )} />
         <Route exact path="/search" render={() => (
-          <SearchBooks shelfs={shelfs} />
+          <SearchBooks
+            shelfs={shelfs}
+            onUpdateBookShelf={(book, newShelf) => this.onUpdateBookShelf(book, newShelf)} />
         )}  />
       </div>
     )

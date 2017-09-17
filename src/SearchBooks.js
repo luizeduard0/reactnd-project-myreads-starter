@@ -7,7 +7,8 @@ import Book from './Book'
 class SearchBooks extends Component {
 
   static propTypes = {
-    shelfs: PropTypes.array
+    shelfs: PropTypes.array,
+    onUpdateBookShelf: PropTypes.func.isRequired
   }
 
   state = {
@@ -31,7 +32,7 @@ class SearchBooks extends Component {
   render () {
 
     const { results, searching = false } = this.state
-    const { shelfs } = this.props
+    const { shelfs, onUpdateBookShelf } = this.props
 
     return (
 
@@ -40,16 +41,7 @@ class SearchBooks extends Component {
         <div className="search-books-bar">
           <Link to="/" className='close-search'>Close</Link>
           <div className="search-books-input-wrapper">
-            {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */}
             <input onChange={event => this.search(event.target.value)} type="text" placeholder="Search by title or author"/>
-
           </div>
         </div>
         <div className="search-books-results">
@@ -59,7 +51,7 @@ class SearchBooks extends Component {
             ) || (
               results.map(book => (
                 <li key={book.id}>
-                  <Book book={book} shelfs={shelfs} />
+                  <Book book={book} shelfs={shelfs} onUpdateBookShelf={onUpdateBookShelf} />
                 </li>
               ))
             )}
