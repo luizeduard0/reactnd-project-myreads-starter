@@ -55,6 +55,10 @@ class Book extends Component {
         <div className="book-authors">
           {book.authors ? book.authors.join(', ') : 'unkown'}
         </div>
+        <a href="" className='book-see-more' onClick={e => {
+          e.preventDefault()
+          this.handleOpenModal()
+        }}>See more</a>
 
         <ReactModal
            isOpen={this.state.showModal}

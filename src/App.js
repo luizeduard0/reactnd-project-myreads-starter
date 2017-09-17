@@ -46,17 +46,17 @@ class BooksApp extends React.Component {
 
   onUpdateBookShelf(book, newShelf) {
     book.shelf = newShelf
+
+    const bookAlreadyExists = this.bookAlreadyExists(book.id)
+
+    this.setState(currentState => {
+      books:  bookAlreadyExists ?
+              currentState.books.concat([book]) :
+              currentState.books.push(book)
+    })
+
     BooksAPI.update(book, newShelf)
       .then(response => {
-
-        const bookAlreadyExists = this.bookAlreadyExists(book.id)
-
-        this.setState(currentState => {
-          books:  bookAlreadyExists ?
-                  currentState.books.concat([book]) :
-                  currentState.books.push(book)
-        })
-
         this.msg.show(bookAlreadyExists ? `Book moved to ${humanize(newShelf)}` : `Book added to ${humanize(newShelf)}`, {
           type: 'success'
         })

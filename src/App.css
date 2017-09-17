@@ -163,6 +163,7 @@ body, .app {
 /* book cover */
 
 .book-cover {
+  cursor: pointer;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
 }
@@ -302,4 +303,9 @@ body, .app {
   padding: 5px 20px 5px 20px;
   text-decoration: none;
   border: 0;
+}
+
+.book-see-more {
+  font-size: 13px;
+  color: #2e7c31;
 }
