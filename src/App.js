@@ -13,7 +13,7 @@ class BooksApp extends React.Component {
     loading: true
   }
 
-  componentDidMount() {
+  getBooks() {
     BooksAPI
       .getAll()
       .then(books => {
@@ -27,7 +27,10 @@ class BooksApp extends React.Component {
         })
         console.log('BOOKS', books)
       })
+  }
 
+  componentDidMount() {
+    getBooks()
   }
 
   render() {
