@@ -14,7 +14,7 @@ class SearchTermsSuggestion extends Component {
         <div className='search-terms-suggestions'>
         <h2>
           Don't know how to start?
-          <small>Try using one of the terms above</small>
+          <small>Try using one of the terms bellow</small>
         </h2>
         <ol>
           {searchTerms.map(term => (

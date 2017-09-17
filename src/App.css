@@ -174,11 +174,11 @@ body, .app {
 }
 
 .search-terms-suggestions {
-  padding: 80px 30px 20px;
+  padding: 0px 30px 20px;
 }
 
 .search-terms-suggestions h2 {
-
+  font-weight: normal;
 }
 
 .search-terms-suggestions h2 small {

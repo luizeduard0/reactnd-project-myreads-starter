@@ -30,6 +30,8 @@ class SearchBooks extends Component {
   }
 
   search(query) {
+    this.setState({ query })
+    
     if(!query) {
       this.setState({ results: [] })
       return
@@ -39,7 +41,9 @@ class SearchBooks extends Component {
 
     if(this.state.searching) return
 
-    this.setState({ searching: true, query })
+    console.log('QUERY', query)
+
+    this.setState({ searching: true })
 
     BooksAPI.search(query, 20)
       .then(results => {
