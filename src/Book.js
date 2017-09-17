@@ -19,9 +19,9 @@ class Book extends Component {
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}></div>
           <div className="book-shelf-changer">
             <select name="shelf" value={book.shelf}>
+              <option value="" disabled>Move to</option>
               <option value="">None</option>
               {shelfs
-                .filter(shelf => shelf !== book.shelf)
                 .map(shelf => (
                 <option key={shelf} value={shelf}>{humanize(shelf)}</option>
               ))}
