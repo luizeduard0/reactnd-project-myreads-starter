@@ -8,6 +8,7 @@ class SearchBooks extends Component {
 
   static propTypes = {
     shelfs: PropTypes.array,
+    books: PropTypes.array,
     onUpdateBookShelf: PropTypes.func.isRequired
   }
 
@@ -18,12 +19,26 @@ class SearchBooks extends Component {
 
   search(query) {
     if(!query) {
-      // TODO: make sure when the search is empty it display no results...
       this.setState({ results: [] })
       return
     }
+
+    this.setState({ searching: true })
+
     BooksAPI.search(query, 20)
       .then(results => {
+
+
+        if(results.error) {
+          results = []
+        } else {
+          results = results.map(book => {
+            const bookInAShelf = this.props.books.filter(b => b.id === book.id)
+            if(bookInAShelf.length) book.shelf = bookInAShelf[0].shelf
+            return book
+          })
+        }
+
         this.setState({ searching: false, results })
       })
 
