@@ -17,12 +17,8 @@ class Book extends Component {
     shelfs: PropTypes.array.isRequired
   }
 
-  handleOpenModal () {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal () {
-    this.setState({ showModal: false });
+  handleModalVisibility = showModal => {
+    this.setState({ showModal });
   }
 
   render() {
@@ -32,7 +28,7 @@ class Book extends Component {
       <div className="book">
         <div className="book-top">
           <div
-            onClick={() => this.handleOpenModal()}
+            onClick={() => this.handleModalVisibility(true)}
             className="book-cover"
             style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks ? book.imageLinks.smallThumbnail : 'https://placehold.it/128x193'}")` }}>
           </div>
@@ -66,12 +62,12 @@ class Book extends Component {
            <div className='book-modal'>
              <button
                style={{float: 'right'}}
-               onClick={() => this.handleCloseModal()}>Close</button>
+               onClick={() => this.handleModalVisibility(false)}>Close</button>
 
              <div className="book">
                <div className="book-top">
                  <div
-                   onClick={() => this.handleOpenModal()}
+                   onClick={() => this.handleModalVisibility(true)}
                    className="book-cover"
                    style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : 'https://placehold.it/128x193'}")` }}>
                  </div>
