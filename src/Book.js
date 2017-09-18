@@ -49,7 +49,7 @@ class Book extends Component {
         <BookRating book={book} />
         <div className="book-title">{book.title}</div>
         <div className="book-authors">
-          {book.authors ? book.authors.join(', ') : 'unkown'}
+          {book.authors ? book.authors.join(', ') : 'unknown'}
         </div>
         <a href="" className='book-see-more' onClick={e => {
           e.preventDefault()
@@ -88,7 +88,7 @@ class Book extends Component {
                <BookRating book={book} />
                <div className="book-title">{book.title}</div>
                <div className="book-authors">
-                 {book.authors ? book.authors.join(', ') : 'unkown'}
+                 {book.authors ? book.authors.join(', ') : 'unknown'}
                </div>
                <div className="book-categories">
                  {book.categories && (
