@@ -6,7 +6,8 @@
     "react-alert": "^2.3.0",
     "react-dom": "^15.5.4",
     "react-modal": "^2.3.2",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "string-humanize": "^1.0.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
